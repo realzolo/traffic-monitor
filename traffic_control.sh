@@ -52,7 +52,7 @@ while :; do
     fi
 
     # 打印信息
-    echo "$(date "+%Y-%m-%d %H:%M:%S"): $INTERVAL 秒内 $INTERFACE 网的出口流量为 $tx_mb MB"
+    echo "$(date "+%Y-%m-%d %H:%M:%S"): $INTERVAL 秒内 $INTERFACE 网口的出口流量为 $tx_mb MB"
 
     # 如果出流量超过阈值，关闭网络并重连
     if [ $(echo "$tx_mb>$LIMIT" | bc) -eq 1 ]; then
