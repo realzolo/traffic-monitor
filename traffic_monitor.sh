@@ -1,10 +1,10 @@
 function traffic_monitor {
     # 系统版本(linux发行版)
-    OS_NAME=$(cat /etc/issue | awk '{print $1}')
+    OS_NAME=$(awk -F= '$1=="ID"{print $2}' /etc/os-release)
 
     # 网口名
-
     eth=$1
+    
     #判断网卡存在与否,不存在则退出
     if [ ! -d /sys/class/net/$eth ]; then
         echo -e "Network-Interface Not Found"
@@ -51,7 +51,6 @@ function traffic_monitor {
         fi
 
         # 打印信息
-        echo -e "==================================="
         echo -e "System: $OS_NAME"
         echo -e "Date:  $(date +%F)"
         echo -e "Time:  $(date +%k:%M:%S)"
